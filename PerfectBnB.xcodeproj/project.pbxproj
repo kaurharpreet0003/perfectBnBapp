@@ -16,6 +16,7 @@
 		1261E2D125D49294001EDE5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1261E2CF25D49294001EDE5F /* LaunchScreen.storyboard */; };
 		1261E2DC25D49294001EDE5F /* PerfectBnBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1261E2DB25D49294001EDE5F /* PerfectBnBTests.swift */; };
 		1261E2E725D49294001EDE5F /* PerfectBnBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1261E2E625D49294001EDE5F /* PerfectBnBUITests.swift */; };
+		1272A3B125E4466300B19D65 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272A3B025E4466300B19D65 /* DBHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		1261E2E225D49294001EDE5F /* PerfectBnBUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerfectBnBUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1261E2E625D49294001EDE5F /* PerfectBnBUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectBnBUITests.swift; sourceTree = "<group>"; };
 		1261E2E825D49294001EDE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1272A3B025E4466300B19D65 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				1261E2CF25D49294001EDE5F /* LaunchScreen.storyboard */,
 				1261E2D225D49294001EDE5F /* Info.plist */,
 				1261E2CA25D49290001EDE5F /* PerfectBnB.xcdatamodeld */,
+				1272A3B025E4466300B19D65 /* DBHelper.swift */,
 			);
 			path = PerfectBnB;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				1261E2C625D49290001EDE5F /* ViewController.swift in Sources */,
 				1261E2C225D49290001EDE5F /* AppDelegate.swift in Sources */,
+				1272A3B125E4466300B19D65 /* DBHelper.swift in Sources */,
 				1261E2CC25D49290001EDE5F /* PerfectBnB.xcdatamodeld in Sources */,
 				1261E2C425D49290001EDE5F /* SceneDelegate.swift in Sources */,
 			);
@@ -441,6 +445,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JMPMJLY26B;
 				INFOPLIST_FILE = PerfectBnB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -459,6 +464,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JMPMJLY26B;
 				INFOPLIST_FILE = PerfectBnB/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
