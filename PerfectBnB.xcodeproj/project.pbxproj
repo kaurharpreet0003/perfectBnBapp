@@ -17,6 +17,7 @@
 		1261E2DC25D49294001EDE5F /* PerfectBnBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1261E2DB25D49294001EDE5F /* PerfectBnBTests.swift */; };
 		1261E2E725D49294001EDE5F /* PerfectBnBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1261E2E625D49294001EDE5F /* PerfectBnBUITests.swift */; };
 		1272A3B125E4466300B19D65 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272A3B025E4466300B19D65 /* DBHelper.swift */; };
+		12FAAE2625F2F844000665E8 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FAAE2525F2F844000665E8 /* CityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		1261E2E625D49294001EDE5F /* PerfectBnBUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectBnBUITests.swift; sourceTree = "<group>"; };
 		1261E2E825D49294001EDE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1272A3B025E4466300B19D65 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
+		12FAAE2525F2F844000665E8 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				1261E2C125D49290001EDE5F /* AppDelegate.swift */,
 				1261E2C325D49290001EDE5F /* SceneDelegate.swift */,
 				1261E2C525D49290001EDE5F /* ViewController.swift */,
+				12FAAE2525F2F844000665E8 /* CityViewController.swift */,
 				1261E2C725D49290001EDE5F /* Main.storyboard */,
 				1261E2CD25D49294001EDE5F /* Assets.xcassets */,
 				1261E2CF25D49294001EDE5F /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 				1272A3B125E4466300B19D65 /* DBHelper.swift in Sources */,
 				1261E2CC25D49290001EDE5F /* PerfectBnB.xcdatamodeld in Sources */,
 				1261E2C425D49290001EDE5F /* SceneDelegate.swift in Sources */,
+				12FAAE2625F2F844000665E8 /* CityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

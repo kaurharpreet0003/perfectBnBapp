@@ -62,6 +62,5 @@ class DBHelper  {
         } else {
             print("Query is Not As per Requirement")
         }
-        
     }
 }
