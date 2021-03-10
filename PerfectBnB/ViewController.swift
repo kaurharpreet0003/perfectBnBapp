@@ -6,7 +6,9 @@
 //
 
 import UIKit
+import SwiftUI
 import CoreLocation
+
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet var btn: UIButton!
@@ -19,13 +21,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func btnDetect(_ sender: Any) {
        showAlert()
         if btn.currentTitle == "Start Search!" {
+            locationManager.stopUpdatingLocation()
             let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            
+
             guard let cityViewController = mainStoryboard.instantiateViewController(identifier: "CityViewController") as? CityViewController else {
                 print("Couldn't Find The View Controller")
                 return
             }
-            
+
             navigationController?.pushViewController(cityViewController, animated: true)
             
         } else {
@@ -33,6 +36,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+
     let db = DBHelper()
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -58,27 +62,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    func alert() {
+        let alertController = UIAlertController(title: NSLocalizedString("Turn On Location Services to Allow PerfectBnB to Determine Your Location", comment: ""), message: NSLocalizedString("", comment: ""), preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+        let settingsAction = UIAlertAction(title: NSLocalizedString("Settings", comment: ""), style: .default) { (UIAlertAction) in
+            UIApplication.shared.openURL(NSURL(string: UIApplication.openSettingsURLString)! as URL)
+                    }
+
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+                    self.present(alertController, animated: true, completion: nil)
+    }
 
     func showAlert() {
-//        let alert = UIAlertController(title: "GPS is disabled", message: "Please enable it", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
-//            print("Dismissed")
-//        }))
-//
-//        alert.addAction(UIAlertAction(title: "Enable", style: .default, handler: { action in
-//            // asking for permission
-            self.locationManager.requestWhenInUseAuthorization()
-            if CLLocationManager.locationServicesEnabled() {
-                self.locationManager.delegate = self
-                self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-                self.locationManager.startUpdatingLocation()
-            }
-//
-//    }))
-//
-//        present(alert, animated: true)
-////        present(alert, animated: false, completion: nil)
-//
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            self.locationManager.startUpdatingLocation()
+        } else { alert()}
     }
     
 }
