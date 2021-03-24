@@ -63,4 +63,43 @@ class DBHelper  {
             print("Query is Not As per Requirement")
         }
     }
+    
+    func query() {
+        let queryStatementString = "SELECT * FROM Location ORDER BY latitude DESC limit 1 ;"
+        var queryStatement: OpaquePointer? = nil
+      // 1
+      if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) ==
+          SQLITE_OK {
+        // 2
+        if sqlite3_step(queryStatement) == SQLITE_ROW {
+          // 3
+            guard let id = sqlite3_column_text(queryStatement, 0) else {
+                print("Lets See")
+                return
+            }
+          // 4
+          guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
+            print("Query result is nil")
+            return
+          }
+          let lat = String(cString: id)
+          let long = String(cString: queryResultCol1)
+          // 5
+          print("\nQuery Result:")
+          print("Latitude: \(lat) | Longitude: \(long)")
+      } else {
+          print("\nQuery returned no results.")
+        }
+      } else {
+          // 6
+        let errorMessage = String(cString: sqlite3_errmsg(db))
+        print("\nQuery is not prepared \(errorMessage)")
+      }
+      // 7
+      sqlite3_finalize(queryStatement)
+    }
+    
+   
+    
+    
 }

@@ -12,18 +12,19 @@ struct WeatherView: View {
     @State var city = "City Name:"
     @State var temperature = "Temperature:"
     @ObservedObject var viewModel: WeatherViewModel
-    
+
     var body: some View {
         VStack {
             HStack {
-                Text(city).font(.title).padding()
-                Text(viewModel.cityName).font(.largeTitle).bold().padding()
-            }
+                Text(city).font(.title)
+                TextField("City", text: $viewModel.cityName).font(.largeTitle)
+            }.padding().border(Color.black, width: 2)
+
             
-//            HStack{
-//                Text(temperature).font(.title)
-//                Text(viewModel.temperature).font(.system(size: 45)).bold().padding()
-//            }
+            HStack{
+                Text(temperature).font(.title)
+                Text(viewModel.temperature).font(.system(size: 45)).bold()
+            }.padding().border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 2)
             
 //            Text(viewModel.weatherIcon).font(.largeTitle).padding()
 //            Text(viewModel.weatherDescripition)
@@ -31,10 +32,10 @@ struct WeatherView: View {
             viewModel.refresh()
         })
     }
-}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherView(viewModel: WeatherViewModel(weatherService: WeatherService()))
     }
+}
 }

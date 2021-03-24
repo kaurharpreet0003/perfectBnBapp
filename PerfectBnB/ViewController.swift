@@ -55,6 +55,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         
         self.db.insert(latitude: latitude, longitude: longitude)
+        self.db.query()
     
     }
     
@@ -63,27 +64,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view.
     }
     
-    func alert() {
-        let alertController = UIAlertController(title: NSLocalizedString("Turn On Location Services to Allow PerfectBnB to Determine Your Location", comment: ""), message: NSLocalizedString("", comment: ""), preferredStyle: .alert)
-
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
-        let settingsAction = UIAlertAction(title: NSLocalizedString("Settings", comment: ""), style: .default) { (UIAlertAction) in
-            UIApplication.shared.openURL(NSURL(string: UIApplication.openSettingsURLString)! as URL)
-                    }
-
-        alertController.addAction(cancelAction)
-        alertController.addAction(settingsAction)
-                    self.present(alertController, animated: true, completion: nil)
-    }
-
     func showAlert() {
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             self.locationManager.startUpdatingLocation()
-        } else { alert()}
+        }
+        else { alert()}
     }
+    
+    func alert() {
+    let alertController = UIAlertController (title: "To Enable Location", message: "Go to Settings > Privacy > Location Services and Enabled", preferredStyle: .alert)
+
+    let settingsAction =
+     UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+         UIApplication.shared.open(URL(string: "App-Prefs:root=Privacy")!)
+    }
+    alertController.addAction(settingsAction)
+    let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+    alertController.addAction(cancelAction)
+
+    present(alertController, animated: true, completion: nil)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+      
+   }
     
 }
 
