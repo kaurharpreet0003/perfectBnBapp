@@ -45,7 +45,12 @@ class DBHelper  {
         }
     }
     
-    func insert(latitude: String, longitude: String ) {
+    struct Location {
+        let latitude : String!
+        let longitude : String!
+    }
+    
+    func insert(latitude: String, longitude: String ) -> Location {
         let query = "INSERT INTO Location(latitude, longitude) VALUES( ?, ?)"
         
         var statement: OpaquePointer? = nil
@@ -62,9 +67,10 @@ class DBHelper  {
         } else {
             print("Query is Not As per Requirement")
         }
+        return Location(latitude: latitude, longitude: longitude)
     }
     
-    func query() {
+    func query(){
         let queryStatementString = "SELECT * FROM Location ORDER BY latitude DESC limit 1 ;"
         var queryStatement: OpaquePointer? = nil
       // 1
@@ -72,18 +78,10 @@ class DBHelper  {
           SQLITE_OK {
         // 2
         if sqlite3_step(queryStatement) == SQLITE_ROW {
-          // 3
-            guard let id = sqlite3_column_text(queryStatement, 0) else {
-                print("Lets See")
-                return
-            }
-          // 4
-          guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
-            print("Query result is nil")
-            return
-          }
-          let lat = String(cString: id)
-          let long = String(cString: queryResultCol1)
+         let latitude = sqlite3_column_text(queryStatement, 0)
+         let longitude = sqlite3_column_text(queryStatement, 1)
+          let lat = String(cString: latitude!)
+          let long = String(cString: longitude!)
           // 5
           print("\nQuery Result:")
           print("Latitude: \(lat) | Longitude: \(long)")
@@ -98,8 +96,4 @@ class DBHelper  {
       // 7
       sqlite3_finalize(queryStatement)
     }
-    
-   
-    
-    
 }

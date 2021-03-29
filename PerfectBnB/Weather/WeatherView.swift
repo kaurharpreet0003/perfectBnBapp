@@ -17,12 +17,14 @@ struct WeatherView: View {
         VStack {
             HStack {
                 Text(city).font(.title)
+                Spacer()
                 TextField("City", text: $viewModel.cityName).font(.largeTitle)
             }.padding().border(Color.black, width: 2)
 
             
             HStack{
                 Text(temperature).font(.title)
+                Spacer()
                 Text(viewModel.temperature).font(.system(size: 45)).bold()
             }.padding().border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 2)
             
