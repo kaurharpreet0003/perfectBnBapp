@@ -50,7 +50,7 @@ class DBHelper  {
         let longitude : String!
     }
     
-    func insert(latitude: String, longitude: String ) -> Location {
+    func insert(latitude: String, longitude: String ) {
         let query = "INSERT INTO Location(latitude, longitude) VALUES( ?, ?)"
         
         var statement: OpaquePointer? = nil
@@ -67,7 +67,6 @@ class DBHelper  {
         } else {
             print("Query is Not As per Requirement")
         }
-        return Location(latitude: latitude, longitude: longitude)
     }
     
     func query(){
