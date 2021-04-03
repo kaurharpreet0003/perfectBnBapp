@@ -50,7 +50,7 @@ class DBHelper  {
         let longitude : String!
     }
     
-    func insert(latitude: String, longitude: String ) {
+    func insert(latitude: String, longitude: String ) -> Location {
         let query = "INSERT INTO Location(latitude, longitude) VALUES( ?, ?)"
         
         var statement: OpaquePointer? = nil
@@ -67,32 +67,35 @@ class DBHelper  {
         } else {
             print("Query is Not As per Requirement")
         }
+        return Location(latitude: latitude, longitude: longitude)
     }
     
-    func query(){
+    func query() -> Location{
         let queryStatementString = "SELECT * FROM Location ORDER BY latitude DESC limit 1 ;"
         var queryStatement: OpaquePointer? = nil
+        var latitude: String = ""
+        var longitude: String = ""
       // 1
       if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) ==
           SQLITE_OK {
         // 2
         if sqlite3_step(queryStatement) == SQLITE_ROW {
-         let latitude = sqlite3_column_text(queryStatement, 0)
-         let longitude = sqlite3_column_text(queryStatement, 1)
-          let lat = String(cString: latitude!)
-          let long = String(cString: longitude!)
-          // 5
+            latitude = String(cString: sqlite3_column_text(queryStatement, 0))
+            longitude = String(cString: sqlite3_column_text(queryStatement, 1))
+          // 3
           print("\nQuery Result:")
-          print("Latitude: \(lat) | Longitude: \(long)")
-      } else {
+          print("Latitude: \(latitude) | Longitude: \(longitude)\n")
+      }
+        else {
           print("\nQuery returned no results.")
         }
       } else {
-          // 6
+          // 4
         let errorMessage = String(cString: sqlite3_errmsg(db))
         print("\nQuery is not prepared \(errorMessage)")
       }
-      // 7
+      // 5
       sqlite3_finalize(queryStatement)
+        return Location(latitude: latitude, longitude: longitude)
     }
 }

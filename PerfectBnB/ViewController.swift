@@ -44,7 +44,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             return
             
         }
-        print("Latitude :  \(locationValue.latitude)")
+        print("\nLatitude :  \(locationValue.latitude)")
         print("Longitude : \(locationValue.longitude)")
         
         btn.setTitle("Start Search!", for: .normal)
@@ -52,10 +52,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         latitude = String(locationValue.latitude)
         longitude = String(locationValue.longitude)
+//        let latitude: String = location.latitude.appending(String(locationValue.longitude))
+//        let longitude: String = location.longitude.appending(String(locationValue.latitude))
         locationManager.stopUpdatingLocation()
         
         self.db.insert(latitude: latitude, longitude: longitude)
         self.db.query()
+        print(self.db.query().latitude ?? "")
+        print(self.db.query().longitude ?? "")
     
     }
     

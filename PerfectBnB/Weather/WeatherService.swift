@@ -13,6 +13,9 @@ public final class WeatherService: NSObject {
     private let locationManager = CLLocationManager()
     private let API_KEY = "dc275e8c4cc29245496fdff777f0fd8e"
     private var completionHandler : ((Weather) -> Void)?
+    var latitude = DBHelper().query().latitude
+    var longitude = DBHelper().query().longitude
+    
     
     public override init() {
         super.init()
@@ -27,7 +30,7 @@ public final class WeatherService: NSObject {
 
     // api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
     private func makeDataRequest(forCoordinates coordinates: CLLocationCoordinate2D) {
-        guard let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)&appid=\(API_KEY)&units=metric".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
+        guard let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude ?? "17.3850")&lon=\(longitude ?? "78.4867")&appid=\(API_KEY)&units=metric".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
         guard let url = URL(string: urlString) else {return}
 
         URLSession.shared.dataTask(with: url) {data, response, error in guard error == nil, let data = data else {return}
